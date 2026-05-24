@@ -1,0 +1,22 @@
+<div>
+    <h2>Mega Bank - DWFSD</h2>
+
+
+    <form [formGroup] ="form" (ngSubmit)="submit()" >
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="vous@domaine.com">
+        <small class="err" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">Email invalide</small>
+
+
+        <label>Mot de passe </label>
+        <input type="password" formControlName="password" >
+        <small class="err" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">Minimum 6 caractere</small>
+
+
+        <button type="submit" [disabled]="form.invalid || loading()"> {{ loading() ? 'Connexion...' : 'Se connecter' }} </button>
+
+        <p class="err" *ngIf="error()">{{ error() }}</p>
+        <p>Pas de compte ? <a routerLink="/register">S'inscrire</a></p>
+
+    </form>
+</div>
