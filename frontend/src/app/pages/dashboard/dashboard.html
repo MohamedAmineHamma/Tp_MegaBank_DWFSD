@@ -1,1 +1,27 @@
-<p>dashboard works!</p>
+<div class="container">
+    <header class="topbar">
+        <h1>Dashboard</h1>
+        <div>
+            <span>Bonjour, {{ auth.currentUser()?.nom }}</span>
+            <button (click)="auth.logout()">Déconnexion</button>
+        </div>
+    </header>
+
+    <div class="actions">
+        <a routerLink="/virement" class="btn">Effectuer un virement</a>
+        <a routerLink="/historique" class="btn">Voir l'historique</a>
+    </div>
+
+    <h2>Mes comptes</h2>
+    <p *ngIf="loading()">Chargement des comptes...</p>
+    <p *ngIf="!loading() && comptes().length === 0">Aucun compte trouvé. Contactez votre conseiller client.</p>
+
+    <div class="cards">
+        <div *ngFor="let compte of comptes()" class="card">
+            <div class="card-type">{{ compte.type }}</div>
+             <div class="card-numero">{{ compte.numero }}</div>
+             <div class="card-solde">{{ compte.solde | number:'1.2-2' }} <span>{{compte.devise}}</span></div>
+        </div>
+    </div>
+
+</div>
