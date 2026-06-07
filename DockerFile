@@ -1,0 +1,9 @@
+FROM node:20-alpine           #Image de base avec Node.js 20 sur Alpine Linux
+WORKDIR /app                  #Definition de le dossier de travail dans le conteneur
+COPY package*.json ./         #Copie des fichiers de configuration npm
+RUN npm install               #Installation des dépendances
+COPY . .                      #Copie de tous les fichiers du projet dans le conteneur
+EXPOSE 4000                   #Exposition du port 4000 pour le serveur backend
+CMD ["node", "server.js"]     #Commande pour démarrer le serveur backend
+
+
