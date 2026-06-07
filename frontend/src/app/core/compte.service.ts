@@ -15,8 +15,8 @@ export class CompteService {
 
     getOne(id: string): Observable<Compte> { return this.http.get<Compte>(`${this.API}/comptes/${id}`);}
 
-    virement(payload: { compteSourceId: string, compteDestinationId: string, montant: number, libelle?: string }) {
-        return this.http.post(`${this.API}/comptes/virements`, payload);
+    virement(payload: { sourceId: string, destinationId: string, montant: number, libelle?: string }) {
+        return this.http.post(`${this.API}/virements`, payload);
     }
 
 }

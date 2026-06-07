@@ -3,7 +3,7 @@
         <h1>Dashboard</h1>
         <div>
             <span>Bonjour, {{ auth.currentUser()?.nom }}</span>
-            <button (click)="auth.logout()">Déconnexion</button>
+            <button class="btn" (click)="auth.logout()">Déconnexion</button>
         </div>
     </header>
 

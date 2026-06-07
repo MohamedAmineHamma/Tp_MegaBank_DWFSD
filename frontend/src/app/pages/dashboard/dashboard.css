@@ -36,3 +36,23 @@
     font-size: 16px;
     color: #2d3748;
 }
+.btn {
+    padding: 10px 20px;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.span {
+    font-size: 14px;
+    color: #718096;
+}   
+button {
+    padding: 10px 20px;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

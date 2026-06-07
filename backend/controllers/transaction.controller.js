@@ -1,4 +1,4 @@
-const compte = require('../models/compte');
+const Compte = require('../models/compte');
 const Transaction = require('../models/transaction');
 
 exports.history = async (req, res, next) => {
