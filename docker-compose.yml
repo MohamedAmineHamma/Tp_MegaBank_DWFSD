@@ -1,0 +1,22 @@
+services: 
+  backend:
+    build: ./backend
+    image: megabank-backend:latest
+    container_name: megabank-backend
+    env_file: ['./backend/.env']
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+
+  
+  frontend:
+    build: ./frontend
+    image: megabank-frontend:latest
+    container_name: megabank-frontend
+    environment: 
+      - PORT=4200
+    ports:
+      - "4200:4200"
+    depends_on: 
+      - "backend"
+    restart: unless-stopped

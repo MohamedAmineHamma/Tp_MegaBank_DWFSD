@@ -1,0 +1,45 @@
+service:
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: megabank-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./deploy/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/nginx/active:/etc/nginx/active:ro
+    depends_on: ["backend_blue", "frontend_blue", "backend_green", "frontend_green"]
+    restart: unless-stopped
+
+  # ------------------------- BLUE -------------------------
+  backend_blue:
+    image: megabank-backend:${BLUE_BACKEND_TAG:-latest}
+    container_name: backend_blue
+    env_file: ['./backend/.env']
+    expose: ["4000"]
+    restart: unless-stopped
+
+  frontend_blue:
+    image: megabank-frontend:${BLUE_FRONTEND_TAG:-latest}
+    container_name: frontend_blue
+    environment: [ PORT=4200 ]
+    expose: ["4200"]
+    restart: unless-stopped
+    
+  # ------------------------- GREEN -------------------------
+  backend_green:
+    image: megabank-backend:${GREEN_BACKEND_TAG:-latest}
+    container_name: backend_green
+    env_file: ['./backend/.env']
+    expose: ["4000"]
+    restart: unless-stopped
+
+  frontend_green:
+    image: megabank-frontend:${GREEN_FRONTEND_TAG:-latest}
+    container_name: frontend_green
+    environment: [ PORT=4200 ]
+    expose: ["4200"]
+    restart: unless-stopped
+    
+  networks:
+    default:
+      name: megabank-net
